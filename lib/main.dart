@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 void main() {
   stdout.writeln('Buscamines');
@@ -13,6 +14,31 @@ void main() {
     ['·', '·', '·', '·', '·', '·', '·', '·', '·', '·'],
   ];
 
+  // Posicion de las minas 
+  List<List<bool>> posicion_minas = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+  ];
+
+  final azar = Random(); 
+  int minasColocadas = 0;
+
+  while (minasColocadas < 2) {
+    int filaAleatoria = azar.nextInt(3); // 0, 1, 2
+    int columnaAleatoria = azar.nextInt(5); // 0, 1, 2, 3, 4
+
+    if (posicion_minas[filaAleatoria][columnaAleatoria] == false) {
+      posicion_minas[filaAleatoria][columnaAleatoria] = true;
+      minasColocadas++;
+    }
+  }
+
+
+
   String fila = "";
   List<String> letras = ['A','B','C','D','E','F'];
 
@@ -26,7 +52,7 @@ void main() {
     fila = "";
   }
 
-  
+
 
 
 }
