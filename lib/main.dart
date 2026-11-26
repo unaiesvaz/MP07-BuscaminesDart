@@ -24,18 +24,13 @@ void main() {
     [false, false, false, false, false, false, false, false, false, false],
   ];
 
-  final azar = Random(); 
-  int minasColocadas = 0;
+  final azar = Random();
 
-  while (minasColocadas < 2) {
-    int filaAleatoria = azar.nextInt(3); // 0, 1, 2
-    int columnaAleatoria = azar.nextInt(5); // 0, 1, 2, 3, 4
+  colocarMinaCuadrante(posicion_minas, 0, 0, azar);
+  colocarMinaCuadrante(posicion_minas, 0, 5, azar);
+  colocarMinaCuadrante(posicion_minas, 3, 0, azar);
+  colocarMinaCuadrante(posicion_minas, 3, 5, azar);
 
-    if (posicion_minas[filaAleatoria][columnaAleatoria] == false) {
-      posicion_minas[filaAleatoria][columnaAleatoria] = true;
-      minasColocadas++;
-    }
-  }
 
 
 
@@ -62,11 +57,36 @@ void main() {
       continue;
   }
 
+  String orden = comanda.trim().toUpperCase();
+  
+  int posX = int.parse(orden[1]);
+  int posY = 'ABCDEF'.indexOf(orden[0]);
+
 
 
   }
+
+
+
+
 }
 
+
+  void colocarMinaCuadrante(List<List<bool>> posicion_minas, int filaInicio, int columnaInicio, Random azar) {
+      final azar = Random(); 
+      int minasColocadas = 0;
+
+      while (minasColocadas < 2) {
+        int filaAleatoria = filaInicio + azar.nextInt(3); // 0, 1, 2
+        int columnaAleatoria = columnaInicio + azar.nextInt(5); // 0, 1, 2, 3, 4
+
+        if (posicion_minas[filaAleatoria][columnaAleatoria] == false) {
+          posicion_minas[filaAleatoria][columnaAleatoria] = true;
+          minasColocadas++;
+        }
+      }
+  }
+// Funcion recursiva
 int comptaMinesAdjacents(
   List<List<bool>> posicionMinas,
   int fila,
